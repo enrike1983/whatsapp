@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invio WhatsApp Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        input, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #25D366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #1ebe5b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Invia messaggio WhatsApp</h2>
+
+    <label>Numero (formato internazionale):</label>
+    <input id="phone" type="text" value="393451234567">
+
+    <label>Messaggio:</label>
+    <textarea id="message">Ciao! Ho bisogno di informazioni.</textarea>
+
+    <button onclick="sendWhatsApp()">Apri WhatsApp Web</button>
+</div>
+
+<script>
+    function sendWhatsApp() {
+        const phone = document.getElementById("phone").value.trim();
+        const message = encodeURIComponent(document.getElementById("message").value);
+
+        if (!phone) {
+            alert("Inserisci un numero di telefono valido");
+            return;
+        }
+
+        const url = `https://wa.me/${phone}?text=${message}`;
+        window.open(url, "_blank");
+    }
+</script>
+
+</body>
+</html>
+
